@@ -16,7 +16,7 @@ const articleImageHashes = new Set();
 const pageTitles = new Set();
 for (const article of articles) {
   const href = `href="/blog/${article.slug}"`;
-  assert.ok(html.includes(href), 'homepage links to published articles');
+  if (articles.indexOf(article) < 3) assert.ok(html.includes(href), 'homepage links to the three featured articles');
   assert.ok(indexHtml.includes(href), 'blog index links to published articles');
 }
 
@@ -72,7 +72,10 @@ for (const article of [undefined, ...articles]) {
       assert.ok(page.includes(`href="#${section.id}"`) && page.includes(`id="${section.id}"`), 'every contents link resolves');
       assert.ok(page.includes(section.paragraphs[0]), 'complete section is in HTML');
     }
-    assert.ok(page.includes('href="mailto:zakaz@traer.ru?subject='));
+    assert.ok(page.includes('href="mailto:zakaz@prorelsa.ru"'));
+    assert.ok(page.includes('aria-label="Заявка на поставку"'), 'article has a contact form');
+    for (const field of ['email', 'phone', 'comment']) assert.ok(page.includes(`name="${field}"`));
+    if (article.sources) for (const source of article.sources) assert.ok(page.includes(`href="${source.url}"`));
     for (const related of articles.filter(item => item.slug !== article.slug).slice(0, 2)) assert.ok(page.includes(`href="/blog/${related.slug}"`));
   }
   const imageUrl = new URL(pageMeta('og:image', 'property'));

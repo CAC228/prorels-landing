@@ -4,6 +4,7 @@ import { Icon } from '@/components/icons';
 import { formatArticleDate, getArticle, getPublishedArticles, readingMinutes } from '@/content/articles';
 import { blogMetadata, blogStructuredData } from '@/lib/blog-seo';
 import { site } from '@/lib/site';
+import { Kb65Diagram } from '@/components/kb65-diagram';
 
 type Props = { params: Promise<{ slug: string }> };
 
@@ -48,13 +49,15 @@ export default async function ArticlePage({ params }: Props) {
           {article.sections.map(section => <section className="article-content-section" key={section.id} id={section.id} aria-labelledby={`heading-${section.id}`}>
             <h2 id={`heading-${section.id}`}>{section.title}</h2>
             {section.paragraphs.map(paragraph => <p key={paragraph}>{paragraph}</p>)}
+            {section.diagram === 'kb65' && <Kb65Diagram />}
             {section.list && <ul>{section.list.map(item => <li key={item}>{item}</li>)}</ul>}
             {section.table && <div className="article-table-scroll" role="region" aria-label={`Таблица: ${section.title}`} tabIndex={0}><table><caption>{section.title}</caption><thead><tr>{section.table.headers.map(header => <th key={header} scope="col">{header}</th>)}</tr></thead><tbody>{section.table.rows.map(row => <tr key={row[0]}>{row.map((cell, index) => index === 0 ? <th key={index} scope="row">{cell}</th> : <td key={index}>{cell}</td>)}</tr>)}</tbody></table></div>}
             {section.template && <pre className="article-template">{section.template}</pre>}
             {section.note && <aside className="article-note"><Icon name="document" /><p>{section.note}</p></aside>}
           </section>)}
           <section id="takeaway" className="article-takeaway" aria-labelledby="takeaway-title"><div className="eyebrow">ПЕРЕД ЗАКАЗОМ</div><h2 id="takeaway-title">Коротко о главном</h2><p>{article.takeaway}</p></section>
-          <ArticleCallout category={article.catalogCategory} />
+          {article.sources && <section className="article-sources" aria-labelledby="sources-title"><h2 id="sources-title">Источники и область применения</h2><ul>{article.sources.map(source => <li key={source.url}><a href={source.url} target="_blank" rel="noopener noreferrer">{source.title}<Icon name="outward" /><span className="sr-only"> (откроется в новой вкладке)</span></a>{source.note && <p>{source.note}</p>}</li>)}</ul></section>}
+          <ArticleCallout article={article} />
         </div>
       </div>
     </article>

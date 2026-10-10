@@ -57,6 +57,7 @@ export function blogStructuredData(article?: Article) {
     datePublished: article.publishedAt, dateModified: article.updatedAt,
     author: { '@type': 'Organization', ...organization, name: site.name, url: `${site.catalogOrigin}/about` },
     publisher: organization,
+    ...(article.sources ? { citation: article.sources.map(source => ({ '@type': 'CreativeWork', name: source.title, url: source.url })) } : {}),
     mainEntityOfPage: { '@id': `${url}#webpage` },
     image: { '@type': 'ImageObject', url: `${url}/opengraph-image`, width: 1200, height: 630 },
   } : {

@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import { Header } from "@/components/header";
 import { Footer } from "@/components/footer";
 import { BlogSection } from "@/components/blog";
+import { ContactForm } from "@/components/contact-form";
 import { getPublishedArticles } from "@/content/articles";
 import { Icon, type IconName } from "@/components/icons";
 import {
@@ -11,7 +12,6 @@ import {
   faq,
   identity,
   navigation,
-  quoteEmail,
   site,
   structuredData,
 } from "@/lib/site";
@@ -111,7 +111,7 @@ export default function Home() {
             </a>
           </div>
           <div className="hero-caption" aria-hidden="true">
-            <span>ПроРельс</span>
+            <span>#ПроРельс</span>
             <span>Надёжность в каждом соединении</span>
           </div>
         </section>
@@ -443,22 +443,9 @@ export default function Home() {
                 <Icon name="document" />
                 <span>РАСЧЁТ КОМПЛЕКТАЦИИ</span>
               </div>
-              <h3>
-                Спецификация есть?
-                <br />
-                Отправьте её нам.
-              </h3>
-              <p>
-                Укажите нужные материалы, объём и адрес доставки. Приложите файл
-                к письму — так мы сможем точнее рассчитать заказ.
-              </p>
-              <a className="button button-orange" href={quoteEmail}>
-                Отправить спецификацию
-                <Icon name="outward" />
-              </a>
-              <span className="action-note">
-                Откроется ваша почтовая программа
-              </span>
+              <h3>Получить расчёт поставки</h3>
+              <p>Расскажите, какие материалы нужны. Уточним детали и подготовим предложение.</p>
+              <ContactForm />
               <div className="contact-card-divider" />
               <span className="catalog-hint">Ещё выбираете материалы?</span>
               <a className="text-link" href={catalogUrl}>

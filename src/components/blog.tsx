@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import { type Article, readingMinutes } from '@/content/articles';
-import { catalogUrl, quoteEmail } from '@/lib/site';
+import { catalogUrl } from '@/lib/site';
+import { ContactForm } from './contact-form';
 import { Icon } from './icons';
 import './blog.css';
 
@@ -39,16 +40,15 @@ export function BlogSection({ articles, related = false }: { articles: Article[]
   </section>;
 }
 
-export function ArticleCallout({ category }: { category?: string }) {
-  return <section className="article-cta" aria-labelledby="article-cta-title">
+export function ArticleCallout({ article }: { article: Article }) {
+  return <section id="article-request" className="article-cta" aria-labelledby="article-cta-title">
     <div className="eyebrow light">ОТ ЗАДАЧИ К ПОСТАВКЕ</div>
-    <h2 id="article-cta-title">Обсудим вашу спецификацию?</h2>
-    <p>Пришлите перечень материалов, количество и город доставки. Уточним наличие и подготовим предложение.</p>
+    <h2 id="article-cta-title">{article.callout?.title ?? 'Обсудим вашу спецификацию?'}</h2>
+    <p>{article.callout?.text ?? 'Пришлите перечень материалов, количество и город доставки. Уточним наличие и подготовим предложение.'}</p>
+    <ContactForm sourcePath={`/blog/${article.slug}`} dark />
     <div className="article-cta-actions">
-      <a className="button button-orange" href={quoteEmail}>Отправить спецификацию<Icon name="outward" /></a>
-      <a className="text-link light-link" href={category ? `${catalogUrl}?category=${category}` : catalogUrl}>Смотреть каталог<Icon name="outward" /></a>
+      <a className="text-link light-link" href={article.catalogCategory ? `${catalogUrl}?category=${article.catalogCategory}` : catalogUrl}>Смотреть каталог<Icon name="outward" /></a>
     </div>
-    <small>Кнопка откроет вашу почтовую программу.</small>
   </section>;
 }
 

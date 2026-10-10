@@ -6,7 +6,7 @@
 .blog-index-divider > span:last-child { color: var(--muted); }
 .article-hero { background: var(--ink); color: var(--white); padding-block: 30px 64px; }
 .article-hero .breadcrumbs { color: #b8c5ce; }
-.article-hero .breadcrumbs a:hover { color: #ff8644; }
+.article-hero .breadcrumbs a:hover { color: #FB5A00; }
 .article-hero-copy { max-width: 920px; margin: 45px auto 0; }
 .article-meta { display: flex; flex-wrap: wrap; align-items: center; gap: 14px 22px; color: #bdcad2; font-size: 12px; margin-bottom: 23px; }
 .article-meta > span { display: inline-flex; align-items: center; gap: 7px; }
@@ -16,7 +16,7 @@
 .article-hero-copy > p { color: #c6d0d7; max-width: 780px; font-size: 17px; line-height: 1.75; margin-top: 25px; }
 .article-byline { margin-top: 25px; font-size: 12px; color: #bdcad2; }
 .article-byline a { text-decoration: underline; text-underline-offset: 4px; }
-.article-byline a:hover { color: #ff8644; }
+.article-byline a:hover { color: #FB5A00; }
 .article-layout { display: grid; grid-template-columns: 235px minmax(0, 780px); gap: 65px; padding-block: 65px 88px; justify-content: center; align-items: start; }
 .article-sidebar { position: sticky; top: 128px; }
 .article-toc { border-top: 2px solid var(--orange); padding-top: 20px; }
@@ -25,7 +25,7 @@
 .article-toc ol { padding: 0; margin: 18px 0 0; list-style: none; }
 .article-toc li + li { margin-top: 6px; }
 .article-toc a { display: block; color: var(--muted); font-size: 13px; line-height: 1.65; padding-block: 6px; text-decoration: underline; text-decoration-color: transparent; text-underline-offset: 4px; }
-.article-toc a:hover { color: var(--orange-text); text-decoration-color: currentColor; }
+.article-toc a:hover { color: var(--ink); text-decoration-color: var(--orange); }
 .article-body { min-width: 0; font-size: 16px; line-height: 1.85; }
 .article-body .article-lead { font-size: 20px; line-height: 1.75; color: var(--ink); }
 .article-content-section { padding-top: 42px; }
@@ -34,7 +34,7 @@
 .article-body ul { padding-left: 23px; margin: 22px 0 0; color: #44535e; }
 .article-body li + li { margin-top: 9px; }
 .article-body li::marker { color: var(--orange-text); }
-.article-note { display: flex; align-items: flex-start; gap: 15px; background: #fff5ee; border-left: 3px solid var(--orange); padding: 22px 25px; margin-top: 24px; font-size: 14px; line-height: 1.8; }
+.article-note { display: flex; align-items: flex-start; gap: 15px; background: var(--surface); border-left: 3px solid var(--orange); padding: 22px 25px; margin-top: 24px; font-size: 14px; line-height: 1.8; }
 .article-note > svg { width: 21px; height: 21px; color: var(--orange-text); margin-top: 3px; }
 .article-table-scroll { margin-top: 25px; overflow-x: auto; border: 1px solid var(--line); border-radius: 5px; }
 .article-table-scroll:focus-visible { outline: 3px solid var(--orange); outline-offset: 4px; }
@@ -55,6 +55,18 @@
 .article-cta-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 13px 24px; margin-top: 25px; }
 .article-cta-actions .button { font-size: 13px; }
 .article-cta small { display: block; font-size: 11px; color: #aabac5; margin-top: 16px; }
+.article-sources { margin-top: 32px; border-top: 1px solid var(--line); padding-top: 25px; }
+.article-sources h2 { font-family: var(--body); font-size: 16px; line-height: 1.5; letter-spacing: 0; }
+.article-sources ul { padding-left: 19px; font-size: 12px; line-height: 1.8; margin-top: 13px; }
+.article-sources a { text-decoration: underline; text-underline-offset: 3px; }
+.article-sources a svg { width: 13px; height: 13px; margin-left: 6px; vertical-align: middle; }
+.article-sources p { margin-top: 7px; color: var(--muted); }
+.kb65-figure { margin: 27px 0 0; border: 1px solid var(--line); border-radius: 5px; }
+.kb65-diagram-scroll { overflow-x: auto; }
+.kb65-diagram-scroll:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; }
+.kb65-figure svg { display: block; width: 100%; min-width: 560px; }
+.kb65-figure figcaption { padding: 17px 22px; background: var(--surface); font-size: 12px; line-height: 1.7; color: var(--muted); }
+.kb65-figure figcaption strong { color: var(--ink); }
 @media (max-width: 1100px) {
   .article-layout { grid-template-columns: 200px minmax(0, 1fr); gap: 40px; }
   .article-hero-copy { max-width: 850px; }

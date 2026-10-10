@@ -46,7 +46,7 @@ const schema = JSON.parse(
 );
 assert.equal(schema["@graph"][0].name, "ПроРельс");
 assert.equal(schema["@graph"][0].legalName, "ООО «ИНВИА»");
-assert.equal(schema["@graph"][0].email, "zakaz@traer.ru");
+assert.equal(schema["@graph"][0].email, "zakaz@prorelsa.ru");
 const canonical = html.match(
   /<link[^>]*rel="canonical"[^>]*href="([^"]*)"/,
 )?.[1];

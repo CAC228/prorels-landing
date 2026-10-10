@@ -31,6 +31,7 @@ jobs:
       - run: npm test
       - run: npm run build
       - run: npm run typecheck
+      - run: npm run verify:contact
       - name: Verify generated pages
         shell: bash
         run: |
