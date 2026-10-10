@@ -1,0 +1,44 @@
+name: Check landing and blog
+
+on:
+  pull_request:
+  push:
+    branches: [main, feat/seo-blog]
+
+permissions:
+  contents: read
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        indexable: ['false', 'true']
+    env:
+      NEXT_TELEMETRY_DISABLED: '1'
+      SITE_URL: ${{ matrix.indexable == 'true' && 'https://landing.example.org' || '' }}
+      SITE_INDEXABLE: ${{ matrix.indexable }}
+      VERIFY_SITE_ORIGIN: ${{ matrix.indexable == 'true' && 'https://landing.example.org' || '' }}
+      VERIFY_INDEXABLE: ${{ matrix.indexable }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npm run lint
+      - run: npm test
+      - run: npm run build
+      - run: npm run typecheck
+      - name: Verify generated pages
+        shell: bash
+        run: |
+          npm start > /tmp/prorels-server.log 2>&1 &
+          server_pid=$!
+          trap 'kill "$server_pid"' EXIT
+          for attempt in {1..30}; do
+            if curl --silent --fail http://127.0.0.1:4193/ > /dev/null; then break; fi
+            sleep 1
+          done
+          npm run verify:seo

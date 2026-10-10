@@ -93,6 +93,7 @@ assert.ok(
   "404 must not canonicalize to the homepage",
 );
 assert.equal((await get("/icon.svg")).status, 200);
+await import('./verify-blog.mjs');
 console.log(
   `SEO verified: SSR, metadata, ${expectedIndexable ? "production indexability" : "preview noindex"}, canonical policy, JSON-LD, six catalog categories, robots, sitemap, PNG 1200×630, real 404.`,
 );

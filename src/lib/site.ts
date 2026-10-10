@@ -21,10 +21,11 @@ export const site = {
 export const catalogUrl = `${site.catalogOrigin}/catalog`;
 export const quoteEmail = `mailto:${site.email}?subject=${encodeURIComponent('Запрос на поставку материалов ВСП — ПроРельс')}`;
 export const navigation = [
-  { href: '#products', label: 'Продукция' },
-  { href: '#about', label: 'О компании' },
-  { href: '#delivery', label: 'Доставка' },
-  { href: '#contacts', label: 'Контакты' },
+  { href: '/#products', label: 'Продукция' },
+  { href: '/#about', label: 'О компании' },
+  { href: '/#delivery', label: 'Доставка' },
+  { href: '/blog', label: 'Блог' },
+  { href: '/#contacts', label: 'Контакты' },
 ];
 
 export const categories = [

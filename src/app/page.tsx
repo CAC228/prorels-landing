@@ -1,6 +1,9 @@
 import Image from "next/image";
 import type { Metadata } from "next";
 import { Header } from "@/components/header";
+import { Footer } from "@/components/footer";
+import { BlogSection } from "@/components/blog";
+import { getPublishedArticles } from "@/content/articles";
 import { Icon, type IconName } from "@/components/icons";
 import {
   catalogUrl,
@@ -405,6 +408,8 @@ export default function Home() {
           </div>
         </section>
 
+        <BlogSection articles={getPublishedArticles().slice(0, 3)} />
+
         <section
           id="contacts"
           className="contacts-section"
@@ -476,50 +481,7 @@ export default function Home() {
         </section>
       </main>
 
-      <footer className="site-footer">
-        <div className="container">
-          <div className="footer-top">
-            <a
-              className="footer-brand"
-              href="#top"
-              aria-label="ПроРельс — на главную"
-            >
-              <Image
-                src="/images/brand-sheet.png"
-                width={1280}
-                height={651}
-                sizes="640px"
-                alt="ПроРельс. Рельсы, шпалы, крепёж"
-              />
-            </a>
-            <p>
-              Материалы для вашего пути.
-              <br />
-              Поставки по России и СНГ.
-            </p>
-            <a className="text-link light-link" href={catalogUrl}>
-              Основной каталог
-              <Icon name="outward" />
-            </a>
-          </div>
-          <div className="footer-bottom">
-            <span>
-              © {new Date().getFullYear()} ПроРельс. {site.legalName}
-              <br />
-              ИНН {site.inn} · ОГРН {site.ogrn}
-            </span>
-            <a href={`${site.catalogOrigin}/privacy`}>
-              Политика конфиденциальности
-              <Icon name="outward" />
-            </a>
-            <span>
-              Информация на сайте
-              <br />
-              не является публичной офертой.
-            </span>
-          </div>
-        </div>
-      </footer>
+      <Footer />
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{

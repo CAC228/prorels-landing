@@ -1,6 +1,7 @@
 'use client';
 
 import Image from 'next/image';
+import Link from 'next/link';
 import { useEffect, useRef, useState } from 'react';
 import { Icon } from './icons';
 
@@ -42,11 +43,11 @@ export function Header({ navigation, phone, phoneHref, catalogUrl }: Props) {
   return (
     <header className="site-header" ref={header}>
       <div className="container header-inner">
-        <a className="brand" href="#top" aria-label="ПроРельс — на главную" onClick={() => setOpen(false)}>
+        <Link className="brand" href="/" aria-label="ПроРельс — на главную" onClick={() => setOpen(false)}>
           <Image src="/images/prorels-logo.png" width={990} height={304} alt="ПроРельс. Рельсы, шпалы, крепёж" priority sizes="(max-width: 600px) 190px, 240px" />
-        </a>
+        </Link>
         <nav className="desktop-nav" aria-label="Основная навигация">
-          {navigation.map(item => <a key={item.href} href={item.href}>{item.label}</a>)}
+          {navigation.map(item => <Link key={item.href} href={item.href} onClick={() => setOpen(false)}>{item.label}</Link>)}
         </nav>
         <div className="header-contact">
           <a href={phoneHref}>{phone}</a>
@@ -59,7 +60,7 @@ export function Header({ navigation, phone, phoneHref, catalogUrl }: Props) {
       </div>
       <nav id="mobile-navigation" className="mobile-navigation" aria-label="Мобильная навигация" hidden={!open}>
         <div className="container">
-          {navigation.map(item => <a key={item.href} href={item.href} onClick={() => setOpen(false)}>{item.label}<Icon name="arrow" /></a>)}
+          {navigation.map(item => <Link key={item.href} href={item.href} onClick={() => setOpen(false)}>{item.label}<Icon name="arrow" /></Link>)}
           <a className="mobile-catalog" href={catalogUrl}>Смотреть каталог<Icon name="outward" /></a>
           <a href={phoneHref}>{phone}<Icon name="phone" /></a>
         </div>
