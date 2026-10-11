@@ -15,6 +15,12 @@ COPY . .
 
 ENV NEXT_TELEMETRY_DISABLED=1
 
+# Metadata and the sitemap are generated at build time, not container startup.
+ARG SITE_URL=""
+ARG SITE_INDEXABLE="false"
+ENV SITE_URL=$SITE_URL
+ENV SITE_INDEXABLE=$SITE_INDEXABLE
+
 RUN npm run build
 
 FROM node:22-alpine AS runner

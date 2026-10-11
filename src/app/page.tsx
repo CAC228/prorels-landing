@@ -1,6 +1,10 @@
 import Image from "next/image";
 import type { Metadata } from "next";
 import { Header } from "@/components/header";
+import { Footer } from "@/components/footer";
+import { BlogSection } from "@/components/blog";
+import { ContactForm } from "@/components/contact-form";
+import { getPublishedArticles } from "@/content/articles";
 import { Icon, type IconName } from "@/components/icons";
 import {
   catalogUrl,
@@ -8,7 +12,6 @@ import {
   faq,
   identity,
   navigation,
-  quoteEmail,
   site,
   structuredData,
 } from "@/lib/site";
@@ -108,7 +111,7 @@ export default function Home() {
             </a>
           </div>
           <div className="hero-caption" aria-hidden="true">
-            <span>ПроРельс</span>
+            <span>#ПроРельс</span>
             <span>Надёжность в каждом соединении</span>
           </div>
         </section>
@@ -405,6 +408,8 @@ export default function Home() {
           </div>
         </section>
 
+        <BlogSection articles={getPublishedArticles().slice(0, 3)} />
+
         <section
           id="contacts"
           className="contacts-section"
@@ -438,22 +443,9 @@ export default function Home() {
                 <Icon name="document" />
                 <span>РАСЧЁТ КОМПЛЕКТАЦИИ</span>
               </div>
-              <h3>
-                Спецификация есть?
-                <br />
-                Отправьте её нам.
-              </h3>
-              <p>
-                Укажите нужные материалы, объём и адрес доставки. Приложите файл
-                к письму — так мы сможем точнее рассчитать заказ.
-              </p>
-              <a className="button button-orange" href={quoteEmail}>
-                Отправить спецификацию
-                <Icon name="outward" />
-              </a>
-              <span className="action-note">
-                Откроется ваша почтовая программа
-              </span>
+              <h3>Получить расчёт поставки</h3>
+              <p>Расскажите, какие материалы нужны. Уточним детали и подготовим предложение.</p>
+              <ContactForm />
               <div className="contact-card-divider" />
               <span className="catalog-hint">Ещё выбираете материалы?</span>
               <a className="text-link" href={catalogUrl}>
@@ -476,50 +468,7 @@ export default function Home() {
         </section>
       </main>
 
-      <footer className="site-footer">
-        <div className="container">
-          <div className="footer-top">
-            <a
-              className="footer-brand"
-              href="#top"
-              aria-label="ПроРельс — на главную"
-            >
-              <Image
-                src="/images/brand-sheet.png"
-                width={1280}
-                height={651}
-                sizes="640px"
-                alt="ПроРельс. Рельсы, шпалы, крепёж"
-              />
-            </a>
-            <p>
-              Материалы для вашего пути.
-              <br />
-              Поставки по России и СНГ.
-            </p>
-            <a className="text-link light-link" href={catalogUrl}>
-              Основной каталог
-              <Icon name="outward" />
-            </a>
-          </div>
-          <div className="footer-bottom">
-            <span>
-              © {new Date().getFullYear()} ПроРельс. {site.legalName}
-              <br />
-              ИНН {site.inn} · ОГРН {site.ogrn}
-            </span>
-            <a href={`${site.catalogOrigin}/privacy`}>
-              Политика конфиденциальности
-              <Icon name="outward" />
-            </a>
-            <span>
-              Информация на сайте
-              <br />
-              не является публичной офертой.
-            </span>
-          </div>
-        </div>
-      </footer>
+      <Footer />
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{

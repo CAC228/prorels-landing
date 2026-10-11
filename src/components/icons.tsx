@@ -1,6 +1,8 @@
 import type { SVGProps } from 'react';
 
 const paths = {
+  book: <><path d="M12 5v16M3 3h5a4 4 0 0 1 4 2 4 4 0 0 1 4-2h5v16h-5a4 4 0 0 0-4 2 4 4 0 0 0-4-2H3V3Z" /></>,
+  clock: <><circle cx="12" cy="12" r="9" /><path d="M12 7v5l3 2" /></>,
   arrow: <><path d="M5 12h14M13 6l6 6-6 6" /></>,
   outward: <><path d="M6 18 18 6M6 6h12v12" /></>,
   pin: <><path d="M20 10c0 6-8 11-8 11S4 16 4 10a8 8 0 1 1 16 0Z" /><circle cx="12" cy="10" r="2.5" /></>,

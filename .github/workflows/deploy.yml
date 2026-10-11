@@ -32,6 +32,9 @@ jobs:
         with:
           context: .
           push: true
+          build-args: |
+            SITE_URL=${{ vars.SITE_URL }}
+            SITE_INDEXABLE=${{ vars.SITE_INDEXABLE || 'false' }}
           tags: |
             ghcr.io/${{ github.repository }}:latest
             ghcr.io/${{ github.repository }}:${{ github.sha }}

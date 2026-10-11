@@ -46,7 +46,7 @@ const schema = JSON.parse(
 );
 assert.equal(schema["@graph"][0].name, "ПроРельс");
 assert.equal(schema["@graph"][0].legalName, "ООО «ИНВИА»");
-assert.equal(schema["@graph"][0].email, "zakaz@traer.ru");
+assert.equal(schema["@graph"][0].email, "zakaz@prorelsa.ru");
 const canonical = html.match(
   /<link[^>]*rel="canonical"[^>]*href="([^"]*)"/,
 )?.[1];
@@ -93,6 +93,7 @@ assert.ok(
   "404 must not canonicalize to the homepage",
 );
 assert.equal((await get("/icon.svg")).status, 200);
+await import('./verify-blog.mjs');
 console.log(
   `SEO verified: SSR, metadata, ${expectedIndexable ? "production indexability" : "preview noindex"}, canonical policy, JSON-LD, six catalog categories, robots, sitemap, PNG 1200×630, real 404.`,
 );
